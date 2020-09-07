@@ -1,0 +1,11 @@
+//= require jquery/jquery.min.js
+//= require bootstrap/js/bootstrap.bundle.min.js
+//= require overlayScrollbars/js/jquery.overlayScrollbars.min.js
+//= require adminlte.js
+//= require jquery-mousewheel/jquery.mousewheel.js
+//= require raphael/raphael.min.js
+//= require jquery-mapael/jquery.mapael.min.js
+//= require jquery-mapael/maps/usa_states.min.js
+//= require chart.js/Chart.min.js
+//= require demo.js
+//= require pages/dashboard2.js
