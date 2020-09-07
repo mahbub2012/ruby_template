@@ -11,6 +11,8 @@
  * It is generally better to create a new file per style scope.
  *
  *= require fontawesome-free/css/all.css
+ *= require datatables-bs4/css/dataTables.bootstrap4.css
+ *= require datatables-responsive/css/responsive.bootstrap4.css
  *= require OverlayScrollbars.css
  *= require adminlte.css
  */
