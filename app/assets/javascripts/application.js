@@ -1,4 +1,5 @@
 //= require jquery/jquery.js
+//= require jquery_ujs
 //= require bootstrap/js/bootstrap.bundle.js
 //= require datatables/jquery.dataTables.js
 //= require datatables-bs4/js/dataTables.bootstrap4.js
