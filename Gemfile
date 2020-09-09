@@ -5,6 +5,8 @@ ruby '2.6.3'
 
 # Devise is a flexible authentication solution for Rails based on Warden
 gem 'devise'
+# Pagy is the ultimate pagination gem
+gem 'pagy', '~> 3.5'
 # adds default rails js
 gem 'jquery-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
