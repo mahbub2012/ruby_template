@@ -1,0 +1,80 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Users</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item active">Users</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <%= link_to admin_users_path, class: "btn btn-default" do %>
+                  <i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back
+              <% end %>
+            </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <%= form_with model: @user,url: admin_user_path(@user), local: true, html: {autocomplete: "off"} do %>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <%= label_tag(:email, "Email address") %>
+                      <%= email_field_tag :email, @user.email, class: "form-control #{@user.errors.messages[:email].present? ? 'is-invalid' : nil}", placeholder: "Enter email address", required: true %>
+                      <span class="error invalid-feedback">
+                        <%= @user.errors.full_messages_for(:email).join('. ') %>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <%= label_tag(:password, "Password") %>
+                      <%= password_field_tag :password, nil, class: "form-control #{@user.errors.messages[:password].present? ? 'is-invalid' : nil}", placeholder: 'Enter password' %>
+                      <span class="error invalid-feedback">
+                        <%= @user.errors.full_messages_for(:password).join('. ') %>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <%= label_tag(:password_confirmation, "Password Again") %>
+                      <%= password_field_tag :password_confirmation, nil, class: "form-control #{@user.errors.messages[:password_confirmation].present? ? 'is-invalid' : nil}", placeholder: 'Enter password again' %>
+                      <span class="error invalid-feedback">
+                        <%= @user.errors.full_messages_for(:password_confirmation).join('. ') %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-1">
+                    <%= submit_tag("Submit", class: 'btn btn-primary') %>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

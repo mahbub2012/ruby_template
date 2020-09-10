@@ -1,0 +1,124 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Users</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item active">Users</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <a href="<%= new_admin_user_path %>" class="btn btn-primary">Add new user</a>
+            </h3>
+            <div class="card-tools">
+              <button class="btn btn-default" data-toggle="collapse" data-target="#filter">filter</button>
+            </div>
+            <div class="clearfix"></div>
+            <br>
+            <div id="filter" class="collapse p-5 <%= params[:q].present? ? 'show' : nil %>" style="background-color: rgb(245, 245, 245);">
+              <%= form_with(url: admin_users_path, method: "get", local: true) do %>
+                <%= hidden_field_tag(:q, true) %>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= label_tag(:name, "Name") %>
+                      <%= text_field_tag :name, nil, class: "form-control", placeholder: "Enter name" %>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= label_tag(:email, "Email") %>
+                      <%= text_field_tag(:email, nil, class: "form-control", placeholder: "Enter email") %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-1">
+                    <%= submit_tag("Filter", class: 'btn btn-primary') %>
+                  </div>
+                  <% if(params[:q]) %>
+                    <div class="col-md-1">
+                      <%= link_to "Clear", admin_users_path, class: 'btn btn-secondary' %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="users" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Email</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td><%= user.id %></td>
+                  <td><%= user.email %></td>
+                  <td>
+                    <div class="btn-group">
+                      <%= link_to "View", admin_user_path(user), class: 'btn btn-success' %>
+                      <%= link_to "Edit", edit_admin_user_path(user), class: 'btn btn-warning' %>
+                      <%= link_to "Delete", admin_user_path(user), class: 'btn btn-danger' %>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>ID</th>
+                  <th>Email</th>
+                  <th>Action</th>
+                </tr>
+              </tfoot>
+            </table>
+            <%== pagy_bootstrap_nav(@pagy) %>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+<% content_for :page_script do %>
+<script>
+    $(function () {
+        $('#users').DataTable({
+            "paging": false,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": false,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
+<% end %>

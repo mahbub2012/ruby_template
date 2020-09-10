@@ -23,19 +23,19 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
-              <a href="<%= users_path %>" class="btn btn-default">
+              <%= link_to admin_users_path, class: "btn btn-default" do %>
                 <i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back
-              </a>
+              <% end %>
             </h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <%= form_with model: @user,url: '/users/create_user', local: true, html: {autocomplete: "off"} do %>
+            <%= form_with model: @user,url: admin_users_path, local: true, html: {autocomplete: "off"} do %>
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <%= label_tag(:email, "Email address") %>
-                      <%= text_field_tag :email, @user.email, type: 'email', class: "form-control #{@user.errors.messages[:email].present? ? 'is-invalid' : nil}", placeholder: "Enter email address" %>
+                      <%= email_field_tag :email, @user.email, class: "form-control #{@user.errors.messages[:email].present? ? 'is-invalid' : nil}", placeholder: "Enter email address", required: true %>
                       <span class="error invalid-feedback">
                         <%= @user.errors.full_messages_for(:email).join('. ') %>
                       </span>
@@ -44,7 +44,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <%= label_tag(:password, "Password") %>
-                      <%= password_field_tag :password, nil, class: "form-control #{@user.errors.messages[:password].present? ? 'is-invalid' : nil}", placeholder: 'Enter password' %>
+                      <%= password_field_tag :password, nil, class: "form-control #{@user.errors.messages[:password].present? ? 'is-invalid' : nil}", placeholder: 'Enter password', required: true %>
                       <span class="error invalid-feedback">
                         <%= @user.errors.full_messages_for(:password).join('. ') %>
                       </span>
@@ -53,7 +53,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <%= label_tag(:password_confirmation, "Password Again") %>
-                      <%= password_field_tag :password_confirmation, nil, class: "form-control #{@user.errors.messages[:password_confirmation].present? ? 'is-invalid' : nil}", placeholder: 'Enter password again' %>
+                      <%= password_field_tag :password_confirmation, nil, class: "form-control #{@user.errors.messages[:password_confirmation].present? ? 'is-invalid' : nil}", placeholder: 'Enter password again', required: true %>
                       <span class="error invalid-feedback">
                         <%= @user.errors.full_messages_for(:password_confirmation).join('. ') %>
                       </span>

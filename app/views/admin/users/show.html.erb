@@ -7,7 +7,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
           <li class="breadcrumb-item active">Users</li>
         </ol>
       </div>
@@ -23,13 +23,25 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
-              <a href="<%= users_path %>" class="btn btn-default">
+              <%= link_to admin_users_path, class: "btn btn-default" do %>
                 <i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back
-              </a>
+              <% end %>
             </h3>
+            <div class="card-tools">
+              <%= link_to "Edit", edit_admin_user_path(@user), class: "btn btn-warning" %>
+            </div>
           </div>
           <!-- /.card-header -->
-          <%= render 'form' %>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <%= label_tag("Email address") %>
+                  <p><%= @user.email %></p>
+                </div>
+              </div>
+            </div>
+          </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
