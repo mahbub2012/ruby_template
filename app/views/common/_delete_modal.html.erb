@@ -1,0 +1,36 @@
+<!-- The Modal -->
+<div class="modal" id="deleteModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Confirm</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Are you sure?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <%= form_with(url: '', method: 'delete', local: true) do %>
+          <%= submit_tag("Yes", class: 'btn btn-success') %>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+      $(document).on('click', '.del', function () {
+          var url = $(this).data('url');
+          $('#deleteModal form').attr('action', url);
+      });
+  });
+</script>

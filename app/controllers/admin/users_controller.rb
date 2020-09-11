@@ -49,16 +49,22 @@ class Admin::UsersController < ApplicationController
   private
 
   def filter
-    p params
     @users = User.select("*")
+    if(params[:name].present?)
+      @users = @users.where("name like '%#{params[:name]}%'")
+    end
     if(params[:email].present?)
-      @users.where("email like %#{params[:email]}%")
+      @users = @users.where("email like '%#{params[:email]}%'")
     end
     return @users
   end
 
   def user_params
-    params.permit(:email, :password, :password_confirmation)
+    if(params[:photo].blank?)
+      params.delete(:photo)
+    end
+
+    params.permit(:name, :email, :photo, :password, :password_confirmation)
   end
 
   def user_update_params
@@ -67,6 +73,6 @@ class Admin::UsersController < ApplicationController
       params.delete(:password_confirmation)
     end
 
-    params.permit(:email, :password, :password_confirmation)
+    params.permit(:name, :email, :photo, :password, :password_confirmation)
   end
 end

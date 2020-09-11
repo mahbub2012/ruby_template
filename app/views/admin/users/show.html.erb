@@ -7,7 +7,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item"><a href="<%= authenticated_path %>">Home</a></li>
           <li class="breadcrumb-item active">Users</li>
         </ol>
       </div>
@@ -34,6 +34,12 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <%= label_tag("Full name") %>
+                  <p><%= @user.name %></p>
+                </div>
+              </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <%= label_tag("Email address") %>

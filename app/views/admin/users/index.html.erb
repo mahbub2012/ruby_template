@@ -7,7 +7,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+          <li class="breadcrumb-item"><a href="<%= authenticated_path %>">Home</a></li>
           <li class="breadcrumb-item active">Users</li>
         </ol>
       </div>
@@ -37,13 +37,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <%= label_tag(:name, "Name") %>
-                      <%= text_field_tag :name, nil, class: "form-control", placeholder: "Enter name" %>
+                      <%= text_field_tag :name, params[:name], class: "form-control", placeholder: "Enter name" %>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <%= label_tag(:email, "Email") %>
-                      <%= text_field_tag(:email, nil, class: "form-control", placeholder: "Enter email") %>
+                      <%= text_field_tag(:email, params[:email], class: "form-control", placeholder: "Enter email") %>
                     </div>
                   </div>
                 </div>
@@ -66,6 +66,7 @@
               <thead>
                 <tr>
                   <th>ID</th>
+                  <th>Name</th>
                   <th>Email</th>
                   <th>Action</th>
                 </tr>
@@ -74,12 +75,13 @@
               <% @users.each do |user| %>
                 <tr>
                   <td><%= user.id %></td>
+                  <td><%= user.name %></td>
                   <td><%= user.email %></td>
                   <td>
                     <div class="btn-group">
                       <%= link_to "View", admin_user_path(user), class: 'btn btn-success' %>
                       <%= link_to "Edit", edit_admin_user_path(user), class: 'btn btn-warning' %>
-                      <%= link_to "Delete", admin_user_path(user), class: 'btn btn-danger' %>
+                      <%= link_to "Delete", admin_user_path(user), class: 'btn btn-danger del', data: {url: admin_user_path(user), toggle: "modal", target: "#deleteModal"} %>
                     </div>
                   </td>
                 </tr>
@@ -88,6 +90,7 @@
               <tfoot>
                 <tr>
                   <th>ID</th>
+                  <th>Name</th>
                   <th>Email</th>
                   <th>Action</th>
                 </tr>
