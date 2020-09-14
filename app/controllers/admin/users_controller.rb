@@ -14,6 +14,7 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.photo = params[:photo]
 
     if @user.save
       redirect_to admin_users_path
@@ -32,6 +33,9 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    if(params[:photo].present?)
+      @user.photo = params[:photo]
+    end
 
     if(@user.update_attributes(user_update_params))
       redirect_to admin_users_path
@@ -60,11 +64,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    if(params[:photo].blank?)
-      params.delete(:photo)
-    end
-
-    params.permit(:name, :email, :photo, :password, :password_confirmation)
+    params.permit(:name, :email, :password, :password_confirmation, :photo)
   end
 
   def user_update_params
@@ -73,6 +73,6 @@ class Admin::UsersController < ApplicationController
       params.delete(:password_confirmation)
     end
 
-    params.permit(:name, :email, :photo, :password, :password_confirmation)
+    params.permit(:name, :email, :photo, :password, :password_confirmation, :photo)
   end
 end

@@ -7,6 +7,8 @@ ruby '2.6.3'
 gem 'devise'
 # Pagy is the ultimate pagination gem
 gem 'pagy', '~> 3.5'
+# This gem provides a simple and extremely flexible way to upload files
+gem 'carrierwave', '~> 2.0'
 # adds default rails js
 gem 'jquery-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

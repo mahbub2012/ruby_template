@@ -46,6 +46,12 @@
                   <p><%= @user.email %></p>
                 </div>
               </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <%= label_tag("Photo") %>
+                  <p><%= image_tag(@user.photo_url) %></p>
+                </div>
+              </div>
             </div>
           </div>
           <!-- /.card-body -->

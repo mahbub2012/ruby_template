@@ -30,7 +30,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <%= form_with model: @user,url: admin_user_path(@user), local: true, html: {autocomplete: "off"} do %>
+            <%= form_with model: @user,url: admin_user_path(@user), local: true, multipart: true, html: {autocomplete: "off"} do %>
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
@@ -50,6 +50,17 @@
                       </span>
                     </div>
                   </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <%= label_tag(:photo, "Photo") %>
+                      <%= file_field_tag :photo, class: "form-control #{@user.errors.messages[:photo].present? ? 'is-invalid' : nil}", style: 'padding:3px;' %>
+                      <span class="error invalid-feedback">
+                        <%= @user.errors.full_messages_for(:photo).join('. ') %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <%= label_tag(:password, "Password") %>
